@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<title>CDC Dashboard</title>
+	
+	<meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+	
+	<!-- Latest compiled and minified CSS -->
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+	
+	<!-- Bootswatch Theme -->
+	<link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/bootswatch/3.3.7/flatly/bootstrap.min.css" >
+	
+	<!-- External style sheet -->
+	<link rel="stylesheet" type="text/css" href="styles.css">
+	
+	<!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+	
+	<!-- Latest compiled and minified JavaScript -->
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+	
+	<!--Load the AJAX API for Google Charts-->
+    <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+	
+    <script type="text/javascript">
+      // Load the Visualization API and the controls package.
+      google.charts.load('current', {'packages':['corechart', 'controls']});
+	</script>
+	
+	<script type="text/javascript" src="table.js"></script>
+	<script type="text/javascript" src="neighborhood.js"></script>
+</head>
+
+<body>
+
+	<!-- Navbar to be affixed at the top -->
+	<nav class="navbar navbar-inverse">
+		<div class="container-fluid">
+			<div class="navbar-header">
+				<button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+				  <span class="icon-bar"></span>
+				  <span class="icon-bar"></span>
+				  <span class="icon-bar"></span>
+				</button>
+			</div>
+			<div>
+			  <div class="collapse navbar-collapse" id="myNavbar">
+				<ul class="nav navbar-nav">
+				  <li><a href="index.html">What We Do</a></li>
+				  <li><a href="serve.html">Who We Serve</a></li>
+				</ul>
+			  </div>
+			</div>
+		</div>
+	</nav>
+	
+
+	<div class="container-fluid">
+		<div class="col-md-10 col-md-offset-1">
+			<h1 class="text-center">Who We Serve</h1>
+			
+			<div class="row">
+				<div class="col-md-8 col-md-offset-2">
+					<hr>
+				</div>
+			</div>
+
+			  <h2 class="text-center">Understanding Our Clients</h2>
+				
+			  <div id="dashboard_div">
+				  <!--Divs that will hold each control and chart-->
+				  <div class="row">
+					<div class="col-md-6">
+						<div id="filter_div"></div>
+					</div>
+					<div class="col-md-6">
+						<div id="search_div"></div>
+					</div>
+				  </div>
+				  
+				  <div class="row">
+					<div class="col-md-6">
+						<div id="attendance_div"></div>
+					</div>
+					<div class="col-md-6">
+						<div id="transport_div"></div>
+					</div>
+				  </div>
+				  
+				  <div id="chart_div">
+				  </div>
+				  
+				  <div class="row">
+					<div class="col-md-8 col-md-offset-2">
+						<hr>
+					</div>
+				  </div>
+			  </div>
+			  
+			<div class="row">
+				<div class="col-md-6">
+					<h3 class="text-center">Where Do They Live?</h3>
+					<div id="chart_div2">
+					</div>
+				</div>
+				<div class="col-md-6">
+					<h3 class="text-center">How Often Do They Attend?</h3>
+					<div id="chart_div3">
+					</div>
+				</div>
+			</div>
+			
+			<div class="row">
+				<div class="col-md-8 col-md-offset-2">
+					<hr>
+				</div>
+			</div>
+			
+			<div class="row">
+				<div class="col-md-6">
+					<h3 class="text-center">How Do They Get Here?</h3>
+					<div id="chart_div4">
+					</div>
+				</div>
+				<div class="col-md-6">
+					<h3 class="text-center">How Long Does It Take Them?</h3>
+					<div id="chart_div5">
+					</div>
+				</div>
+			</div>
+			 
+		</div>
+	</div>
+</body>
+
+</html>
