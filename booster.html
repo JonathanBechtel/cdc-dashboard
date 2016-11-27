@@ -2,7 +2,7 @@
 <html>
 
 <head>
-	<title>CDC Analytics Dashboard</title>
+	<title>CDC - Booster Club - Who We Serve</title>
 	
 	<meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -23,6 +23,19 @@
 	<!-- Latest compiled and minified JavaScript -->
 	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
 	
+	<!--Load the AJAX API for Google Charts-->
+    <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+	
+    <script type="text/javascript">
+      // Load the Visualization API and the controls package.
+      google.charts.load('current', {'packages':['corechart', 'controls']});
+    </script>
+	
+	<!-- Load javascript specific for this page -->
+	<script type="text/javascript" src="js/booster_table.js"></script>
+	<script type="text/javascript" src="js/booster_demographic.js"></script>
+	
+	
 </head>
 
 <body>
@@ -40,7 +53,7 @@
 			<div>
 			  <div class="collapse navbar-collapse" id="myNavbar">
 				<ul class="nav navbar-nav">
-				  <li class="active"><a href="index.html">Home<span class="sr-only">(current)</span></a></li>
+				  <li><a href="index.html">Home</a></li>
 				  <li class="dropdown">
 					  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Storytime <span class="caret"></span></a>
 					  <ul class="dropdown-menu">
@@ -48,7 +61,7 @@
 						<li><a href="#">Who We Serve</a></li>
 					  </ul>
 					</li>
-				  <li class="dropdown">
+				  <li class="dropdown active">
 					  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Booster Club <span class="caret"></span></a>
 					  <ul class="dropdown-menu">
 						<li><a href="#">What Gets Done</a></li>
@@ -65,16 +78,7 @@
 		<div class="col-md-10 col-md-offset-1">
 		<!-- Contents of page go here -->
 		
-		<h1 class="text-center">Community Development Corporation Analytics Hub</h1>
-		<h3 class="text-center subheading">Visual Dashboards to Empower Us to Serve More</h3>
-		
-	    <div class="row">
-			<div class="col-md-8 col-md-offset-2">
-				<hr>
-			</div>
-		</div>
-		
-		<h2 class="text-center">Departments</h2>
+		<h1 class="text-center">Booster Club - Understanding Our Clients</h1>
 		
 		<div class="row">
 			<div class="col-md-8 col-md-offset-2">
@@ -82,28 +86,86 @@
 			</div>
 		</div>
 		
-		<div class="row">
-			<div class="col-md-4">
-				<div class="alert alert-success" role="alert">
-					<h3 class="text-center text-underline"><u>Storytime</u></h3>
-						<ul class="list-unstyled text-center ul-alert">
-							<li><a href="storytime.html">What Gets Done</a></li>
-							<li><a href="#">Who We Serve</a></li>
-						</ul>
+		<h2 class="text-center">Our Students - Quick Contact Info Lookup</h2>
+		
+		<div id="dashboard_div">
+		
+			<div class="row">
+				<div class="col-md-6">
+					<div id="cohort_filter">
+					</div>
+				</div>
+				<div class="col-md-6">
+					<div id="student_search_filter">
+					</div>
 				</div>
 			</div>
 			
-			<div class="col-md-4">
-				<div class="alert alert-success" role="alert">
-					<h3 class="text-center text-underline"><u>Booster Club</u></h3>
-						<ul class="list-unstyled text-center ul-alert">
-							<li><a href="#">What Gets Done</a></li>
-							<li><a href="booster.html">Who We Serve</a></li>
-						</ul>
-				</div>
+			<div id="student_contact_table">
+			</div>
+			
+		<div class="row">
+			<div class="col-md-8 col-md-offset-2">
+				<hr>
 			</div>
 		</div>
 		
+		<div class="col-md-8 col-md-offset-2">
+			<h2 class="text-center">What Do We Know About Our Students?</h2>
+			
+			<div class="row">
+				<div class="col-md-8 col-md-offset-2">
+					<hr>
+				</div>
+			</div>
+			
+			<h3 class="text-center">What Neighborhood Are They From?</h3>
+			<div id="neighborhood_div">
+			</div>
+			
+			<div class="row">
+				<div class="col-md-8 col-md-offset-2">
+					<hr>
+				</div>
+			</div>
+			
+			<h3 class="text-center">What Household Income Do They Have?</h3>
+			<div id="income_div">
+			</div>
+			
+			<div class="row">
+				<div class="col-md-8 col-md-offset-2">
+					<hr>
+				</div>
+			</div>
+			
+			<h3 class="text-center">How Many Students In Their Households Are Not Attending?</h3>
+			<div id="not_attending_div">
+			</div>
+			
+			<div class="row">
+				<div class="col-md-8 col-md-offset-2">
+					<hr>
+				</div>
+			</div>
+			
+			<h3 class="text-center">What's the Primary Language Spoken In Their House?</h3>
+			<div id="language_spoken_div">
+			</div>
+			
+			<div class="row">
+				<div class="col-md-8 col-md-offset-2">
+					<hr>
+				</div>
+			</div>
+			
+			<h3 class="text-center">How Proficient Are Their Parents in English?</h3>
+			<div id="english_proficiency_div">
+			</div>
+		</div>
+		
+		<!-- End dashboard_div -->
+		</div>
 		
 		<!-- End of master col-md-10 -->
 		</div>
