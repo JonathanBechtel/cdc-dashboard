@@ -1,109 +1,201 @@
-/*This file creates the javascript to create the tables with the summed values
-underneath each of the charts in storytime.html*/
+/*
+This script is made to populate the tables at the bottom of the page on storytime html.  The tables that measure
+unique and total attendance along with demographic information for guests and volunteers is what's created on 
+this page.
+*/
 
-//initialize the callback to send the initial query to populate the tables
-google.charts.setOnLoadCallback(drawTables);
+google.charts.setOnLoadCallback(drawAttendanceTable);
 
-function drawTables() {
-		
-		//familiesTable's are next to 'families helped' chart
-		var familiesTable1 = new google.visualization.ChartWrapper({
-			'chartType'    :   'Table',
-			'containerId'  :   'chart_div4',
-			'dataSourceUrl':   'https://docs.google.com/spreadsheets/d/1lmmpJs2Bz3EfQWExB4KXq_uJWoLlq1PMCahy6w4ipcE/gviz/tq?gid=1104676809',
-			'query'        :   'SELECT SUM(B) LABEL SUM(B) "All Time"'
-		});
-		familiesTable1.draw();
-		
-		var familiesTable2 = new google.visualization.ChartWrapper({
-			'chartType'    :   'Table',
-			'containerId'  :   'chart_div5',
-			'dataSourceUrl':   'https://docs.google.com/spreadsheets/d/1lmmpJs2Bz3EfQWExB4KXq_uJWoLlq1PMCahy6w4ipcE/gviz/tq?gid=1104676809',
-			'query'        :   'SELECT SUM(B) WHERE DATEDIFF(now(), toDate(A)) < 31 LABEL SUM(B) "This Month"'
-		});
-		familiesTable2.draw();
-		
-		var familiesTable3 = new google.visualization.ChartWrapper({
-			'chartType'    :   'Table',
-			'containerId'  :   'chart_div6',
-			'dataSourceUrl':   'https://docs.google.com/spreadsheets/d/1lmmpJs2Bz3EfQWExB4KXq_uJWoLlq1PMCahy6w4ipcE/gviz/tq?gid=1104676809',
-			'query'        :   'SELECT SUM(B) WHERE DATEDIFF(now(), toDate(A)) > 30 AND DATEDIFF(now(), toDate(A)) < 61 LABEL SUM(B) "Last Month"'
-		});
-		familiesTable3.draw();
-		
-		var familiesTable4 = new google.visualization.ChartWrapper({
-			'chartType'    :   'Table',
-			'containerId'  :   'chart_div7',
-			'dataSourceUrl':   'https://docs.google.com/spreadsheets/d/1lmmpJs2Bz3EfQWExB4KXq_uJWoLlq1PMCahy6w4ipcE/gviz/tq?gid=1104676809',
-			'query'        :   'SELECT SUM(B) WHERE DATEDIFF(now(), toDate(A)) < 366 LABEL SUM(B) "Year to Date"'
-		});
-		familiesTable4.draw();
-		
-		//Childrens tables are right next to the 'Children Helped' chart
-		var childrenTable1 = new google.visualization.ChartWrapper({
-			'chartType'    :   'Table',
-			'containerId'  :   'chart_div8',
-			'dataSourceUrl':   'https://docs.google.com/spreadsheets/d/1lmmpJs2Bz3EfQWExB4KXq_uJWoLlq1PMCahy6w4ipcE/gviz/tq?gid=1104676809',
-			'query'        :   'SELECT SUM(C) WHERE DATEDIFF(now(), toDate(A)) < 31 LABEL SUM(C) "This Month"'
-		});
-		childrenTable1.draw();
-		
-		var childrenTable2 = new google.visualization.ChartWrapper({
-			'chartType'    :   'Table',
-			'containerId'  :   'chart_div9',
-			'dataSourceUrl':   'https://docs.google.com/spreadsheets/d/1lmmpJs2Bz3EfQWExB4KXq_uJWoLlq1PMCahy6w4ipcE/gviz/tq?gid=1104676809',
-			'query'        :   'SELECT SUM(C) WHERE DATEDIFF(now(), toDate(A)) > 30 AND DATEDIFF(now(), toDate(A)) < 60 LABEL SUM(C) "Last Month"'
-		});
-		childrenTable2.draw();
-		
-		var childrenTable3 = new google.visualization.ChartWrapper({
-			'chartType'    :   'Table',
-			'containerId'  :   'chart_div10',
-			'dataSourceUrl':   'https://docs.google.com/spreadsheets/d/1lmmpJs2Bz3EfQWExB4KXq_uJWoLlq1PMCahy6w4ipcE/gviz/tq?gid=1104676809',
-			'query'        :   'SELECT SUM(C) WHERE DATEDIFF(now(), toDate(A)) < 366 LABEL SUM(C) "Year to Date"'
-		});
-		childrenTable3.draw();
-		
-		var childrenTable4 = new google.visualization.ChartWrapper({
-			'chartType'    :   'Table',
-			'containerId'  :   'chart_div11',
-			'dataSourceUrl':   'https://docs.google.com/spreadsheets/d/1lmmpJs2Bz3EfQWExB4KXq_uJWoLlq1PMCahy6w4ipcE/gviz/tq?gid=1104676809',
-			'query'        :   'SELECT SUM(C) LABEL SUM(C) "All Time"'
-		});
-		childrenTable4.draw();
-		
-		//BooksTable's are located next to the books donated chart
-		var bookTable1 = new google.visualization.ChartWrapper({
-			'chartType'    :   'Table',
-			'containerId'  :   'chart_div12',
-			'dataSourceUrl':   'https://docs.google.com/spreadsheets/d/1lmmpJs2Bz3EfQWExB4KXq_uJWoLlq1PMCahy6w4ipcE/gviz/tq?gid=1104676809',
-			'query'        :   'SELECT SUM(F) WHERE DATEDIFF(now(), toDate(A)) < 31 LABEL SUM(F) "This Month"'
-		});
-		bookTable1.draw();
-		
-		var bookTable2 = new google.visualization.ChartWrapper({
-			'chartType'    :   'Table',
-			'containerId'  :   'chart_div13',
-			'dataSourceUrl':   'https://docs.google.com/spreadsheets/d/1lmmpJs2Bz3EfQWExB4KXq_uJWoLlq1PMCahy6w4ipcE/gviz/tq?gid=1104676809',
-			'query'        :   'SELECT SUM(F) WHERE DATEDIFF(now(), toDate(A)) > 30 AND DATEDIFF(now(), toDate(A)) < 60 LABEL SUM(F) "Last Month"'
-		});
-		bookTable2.draw();
-		
-		var bookTable3 = new google.visualization.ChartWrapper({
-			'chartType'    :   'Table',
-			'containerId'  :   'chart_div14',
-			'dataSourceUrl':   'https://docs.google.com/spreadsheets/d/1lmmpJs2Bz3EfQWExB4KXq_uJWoLlq1PMCahy6w4ipcE/gviz/tq?gid=1104676809',
-			'query'        :   'SELECT SUM(F) WHERE DATEDIFF(now(), toDate(A)) < 366 LABEL SUM(F) "Year to Date"'
-		});
-		bookTable3.draw();
-		
-		var bookTable4 = new google.visualization.ChartWrapper({
-			'chartType'    :   'Table',
-			'containerId'  :   'chart_div15',
-			'dataSourceUrl':   'https://docs.google.com/spreadsheets/d/1lmmpJs2Bz3EfQWExB4KXq_uJWoLlq1PMCahy6w4ipcE/gviz/tq?gid=1104676809',
-			'query'        :   'SELECT SUM(F) LABEL SUM(F) "All Time"'
-		});
-		bookTable4.draw();
+//Function for Total Attendance Table
+function drawAttendanceTable() {
+  var query = new google.visualization.Query('https://docs.google.com/spreadsheets/d/1lmmpJs2Bz3EfQWExB4KXq_uJWoLlq1PMCahy6w4ipcE/gviz/tq?gid=41319289');
+  query.setQuery('select A, B WHERE C = "Storytime" AND D = "Guest"');
+  query.send(function (response) {
+   
+   var data = response.getDataTable();
+   var view = new google.visualization.DataView(data);
+   view.setColumns([0,
+		{
+			calc: function(dt, r) {
+				var today       = new Date().getTime();
+				var days        = 86400000; //# of milliseconds in a day
+				var oneMonthAgo = today - (30*days);
+				var cellValue   = dt.getValue(r, 0).getTime();
+				if ((cellValue <= today) && (cellValue >= oneMonthAgo)) {
+					return 1
+				}
+				return 0;
+			},
+			type : 'number',
+			label: 'This Month'
+		},
+		{
+			calc: function(dt, r) {
+				var today        = new Date().getTime();
+				var days         = 86400000; //# of milliseconds in a day
+				var oneMonthAgo  = today - (30*days);
+				var twoMonthsAgo = oneMonthAgo - (60*days);
+				var cellValue    = dt.getValue(r, 0).getTime();
+				if ((cellValue < oneMonthAgo) && (cellValue >= twoMonthsAgo)) {
+					return 1;
+				}
+				return 0;
+			},
+			type:  'number',
+			label: 'Last Month'
+		},
+		{
+			calc: function(dt, r) {
+				var thisYear = new Date().getYear();
+				var cellYear = dt.getValue(r, 0).getYear();
+				if (cellYear === thisYear) {
+					return 1;
+				}
+				return 0;
+			},
+			type:  'number',
+			label: 'Year to Date'
+		},
+		{
+			calc: function() {
+				return 1;
+			},
+			type:  'number',
+			label: 'All Time'
+		}
+   ]);
+   
+   var aggData = new google.visualization.data.group(
+		view,
+		[{
+			column: 0,
+			label: 'Time Frame',
+			modifier: function() {
+				return 'Attendance';
+			},
+			type: 'string'
+		}],
+		[{
+			column: 1,
+			label: view.getColumnLabel(1),
+			aggregation: google.visualization.data.sum,
+			type: 'number'
+		},
+		{
+			column: 2,
+			label: view.getColumnLabel(2),
+			aggregation: google.visualization.data.sum,
+			type: 'number'
+		},
+		{
+			column: 3,
+			label: view.getColumnLabel(3),
+			aggregation: google.visualization.data.sum,
+			type: 'number'
+		},
+		{
+			column: 4,
+			label: view.getColumnLabel(4),
+			aggregation: google.visualization.data.sum,
+			type: 'number'
+		}]
+   );
+   
+   var tableDiv = document.getElementById("attendance_table_div");
+   var chart = new google.visualization.Table(tableDiv);
+   chart.draw(aggData);
+  });
 }
+//End Function for total attendance tableDiv
 
+//Call back to initiate table
+google.charts.setOnLoadCallback(drawUniqueAttendanceTable);
 
+//function to create table for unique attendance
+function drawUniqueAttendanceTable() {
+	var query = new google.visualization.Query('https://docs.google.com/spreadsheets/d/1lmmpJs2Bz3EfQWExB4KXq_uJWoLlq1PMCahy6w4ipcE/gviz/tq?gid=41319289');
+	query.setQuery('select A, B WHERE C = "Storytime" AND D = "Guest"');
+	query.send(function(response) {
+		var data = response.getDataTable();
+		var view = new google.visualization.DataView(data);
+		view.setColumns([
+		{
+			calc: function(dt, r) {
+				var today       = new Date().getTime();
+				var days        = 86400000; //# of milliseconds in a day
+				var oneMonthAgo = today - (30*days);
+				var cellValue   = dt.getValue(r, 0).getTime();
+				if ((cellValue <= today) && (cellValue >= oneMonthAgo)) {
+					return dt.getValue(r, 1);
+				}
+				return null;
+			},
+			type : 'string',
+			label: 'This Month'
+		},
+		{
+			calc: function(dt, r) {
+				var today        = new Date().getTime();
+				var days         = 86400000; //# of milliseconds in a day
+				var oneMonthAgo  = today - (30*days);
+				var twoMonthsAgo = oneMonthAgo - (60*days);
+				var cellValue    = dt.getValue(r, 0).getTime();
+				if ((cellValue < oneMonthAgo) && (cellValue >= twoMonthsAgo)) {
+					return dt.getValue(r, 1);
+				}
+				return null;
+			},
+			type:  'string',
+			label: 'Last Month'
+		},
+		{
+			calc: function(dt, r) {
+				var thisYear = new Date().getYear();
+				var cellYear = dt.getValue(r, 0).getYear();
+				if (cellYear === thisYear) {
+					return dt.getValue(r, 1);
+				}
+				return null;
+			},
+			type:  'string',
+			label: 'This Year'
+		},
+		{
+			calc: function(dt, r) {
+				return dt.getValue(r, 1);
+			},
+			type:  'string',
+			label: 'All Time'
+		}
+	]);
+	
+	//Create arrays from distinct values from each column in view
+	col1 = view.getDistinctValues(0);
+	col2 = view.getDistinctValues(1);
+	col3 = view.getDistinctValues(2);
+	col4 = view.getDistinctValues(3);
+	
+	var removeNullValue = function (value) {
+		return value != null;
+	}
+	
+	//remove the null values in each array, so each one contains true # of attendees
+	col1 = col1.filter(removeNullValue);
+	col2 = col2.filter(removeNullValue);
+	col3 = col3.filter(removeNullValue);
+	col4 = col4.filter(removeNullValue);
+	
+	var finalData = new google.visualization.DataTable();
+	finalData.addColumn('number', 'This Month');
+	finalData.addColumn('number', 'Last Month');
+	finalData.addColumn('number', 'Year to Date');
+	finalData.addColumn('number', 'All Time');
+	finalData.addRow([col1.length, col2.length, col3.length, col4.length]);
+	
+	
+		
+		var tableDiv = document.getElementById("unique_attendance_table_div");
+		var chart = new google.visualization.Table(tableDiv);
+		chart.draw(finalData);
+	})
+}
