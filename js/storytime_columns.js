@@ -7,11 +7,12 @@ google.charts.setOnLoadCallback(drawTables);
 function drawTables() {
 		
 		//familiesTable's are next to 'families helped' chart
+		
 		var familiesTable1 = new google.visualization.ChartWrapper({
 			'chartType'    :   'Table',
 			'containerId'  :   'chart_div4',
 			'dataSourceUrl':   'https://docs.google.com/spreadsheets/d/1lmmpJs2Bz3EfQWExB4KXq_uJWoLlq1PMCahy6w4ipcE/gviz/tq?gid=1104676809',
-			'query'        :   'SELECT SUM(B) LABEL SUM(B) "All Time"'
+			'query'        :   'SELECT SUM(B) WHERE DATEDIFF(now(), toDate(A)) < 31 LABEL SUM(B) "This Month"'
 		});
 		familiesTable1.draw();
 		
@@ -19,7 +20,7 @@ function drawTables() {
 			'chartType'    :   'Table',
 			'containerId'  :   'chart_div5',
 			'dataSourceUrl':   'https://docs.google.com/spreadsheets/d/1lmmpJs2Bz3EfQWExB4KXq_uJWoLlq1PMCahy6w4ipcE/gviz/tq?gid=1104676809',
-			'query'        :   'SELECT SUM(B) WHERE DATEDIFF(now(), toDate(A)) < 31 LABEL SUM(B) "This Month"'
+			'query'        :   'SELECT SUM(B) WHERE DATEDIFF(now(), toDate(A)) > 30 AND DATEDIFF(now(), toDate(A)) < 61 LABEL SUM(B) "Last Month"'
 		});
 		familiesTable2.draw();
 		
@@ -27,7 +28,7 @@ function drawTables() {
 			'chartType'    :   'Table',
 			'containerId'  :   'chart_div6',
 			'dataSourceUrl':   'https://docs.google.com/spreadsheets/d/1lmmpJs2Bz3EfQWExB4KXq_uJWoLlq1PMCahy6w4ipcE/gviz/tq?gid=1104676809',
-			'query'        :   'SELECT SUM(B) WHERE DATEDIFF(now(), toDate(A)) > 30 AND DATEDIFF(now(), toDate(A)) < 61 LABEL SUM(B) "Last Month"'
+			'query'        :   'SELECT SUM(B) WHERE DATEDIFF(now(), toDate(A)) < 366 LABEL SUM(B) "Year to Date"'
 		});
 		familiesTable3.draw();
 		
@@ -35,9 +36,9 @@ function drawTables() {
 			'chartType'    :   'Table',
 			'containerId'  :   'chart_div7',
 			'dataSourceUrl':   'https://docs.google.com/spreadsheets/d/1lmmpJs2Bz3EfQWExB4KXq_uJWoLlq1PMCahy6w4ipcE/gviz/tq?gid=1104676809',
-			'query'        :   'SELECT SUM(B) WHERE DATEDIFF(now(), toDate(A)) < 366 LABEL SUM(B) "Year to Date"'
+			'query'        :   'SELECT SUM(B) LABEL SUM(B) "All Time"'
 		});
-		familiesTable4.draw();
+		familiesTable4.draw();		
 		
 		//Childrens tables are right next to the 'Children Helped' chart
 		var childrenTable1 = new google.visualization.ChartWrapper({
