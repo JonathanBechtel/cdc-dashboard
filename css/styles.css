@@ -24,12 +24,6 @@
 	font-size: 16px;
 }
 
-ul.ul-alert li a {
-	color: #fff;
-	line-height: 26px;
-	font-size: 1.2em;
-}
-
 #chart_div4 th, #chart_div5 th, #chart_div6 th, #chart_div7 th, #chart_div8 th, #chart_div9 th, #chart_div10 th,
 #chart_div11 th, #chart_div12 th, #chart_div13 th, #chart_div14 th, #chart_div15 th, #attendance_table_div th,
 #unique_attendance_table_div th, #unique_demographics_table_div th, #volunteer_attendance_div th, #unique_volunteer_div th,
@@ -61,4 +55,8 @@ ul.ul-alert li a {
 
 .panel ul li a {
 	color: #a3a3a3;
+}
+
+.panel:hover {
+	box-shadow: 3px 3px #ccc;
 }
