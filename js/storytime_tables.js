@@ -125,8 +125,9 @@ function drawUniqueAttendanceTable() {
 				var days        = 86400000; //# of milliseconds in a day
 				var oneMonthAgo = today - (30*days);
 				var cellValue   = dt.getValue(r, 0).getTime();
+				var name        = dt.getValue(r, 1).replace(/[^a-zA-Z]+/ig, '');
 				if ((cellValue <= today) && (cellValue >= oneMonthAgo)) {
-					return dt.getValue(r, 1);
+					return name.toLowerCase();
 				}
 				return null;
 			},
@@ -140,8 +141,9 @@ function drawUniqueAttendanceTable() {
 				var oneMonthAgo  = today - (30*days);
 				var twoMonthsAgo = oneMonthAgo - (60*days);
 				var cellValue    = dt.getValue(r, 0).getTime();
+				var name         = dt.getValue(r, 1).replace(/[^a-zA-Z]+/ig, '');
 				if ((cellValue < oneMonthAgo) && (cellValue >= twoMonthsAgo)) {
-					return dt.getValue(r, 1);
+					return name.toLowerCase();
 				}
 				return null;
 			},
@@ -152,8 +154,9 @@ function drawUniqueAttendanceTable() {
 			calc: function(dt, r) {
 				var thisYear = new Date().getYear();
 				var cellYear = dt.getValue(r, 0).getYear();
+				var name     = dt.getValue(r, 1).replace(/[^a-zA-Z]+/ig, '');
 				if (cellYear === thisYear) {
-					return dt.getValue(r, 1);
+					return name.toLowerCase();
 				}
 				return null;
 			},
@@ -162,7 +165,8 @@ function drawUniqueAttendanceTable() {
 		},
 		{
 			calc: function(dt, r) {
-				return dt.getValue(r, 1);
+				var name = dt.getValue(r, 1).replace(/[^a-zA-Z]+/ig, '');
+				return name.toLowerCase();
 			},
 			type:  'string',
 			label: 'All Time'
@@ -212,22 +216,44 @@ function uniqueDemographicsTable() {
 	query.setQuery('select A, B WHERE C = "Storytime" AND D = "Guest"');
 	query.send(function(response) {
 		var data = response.getDataTable();
-		
+		var view = new google.visualization.DataView(data);
+		view.setColumns([0,
+			{
+				calc: function(dt, r) {
+					var name = dt.getValue(r, 1).replace(/[^a-zA-Z]+/ig, '');
+					return name.toLowerCase();
+				},
+				type: 'string',
+				label: 'guests'
+			}
+		]);
+
 		var query2 = new google.visualization.Query('https://docs.google.com/spreadsheets/d/1lmmpJs2Bz3EfQWExB4KXq_uJWoLlq1PMCahy6w4ipcE/gviz/tq?gid=1852373469');
 		query2.setQuery('SELECT B WHERE G = "Corona" OR G = "Elmhurst"');
 		query2.send(function(response2) {
 			var data2 = response2.getDataTable();
-			
+			var view2 = new google.visualization.DataView(data2);
+			view2.setColumns([
+				{
+					calc: function(dt, r) {
+						var name = dt.getValue(r, 0).replace(/[^a-zA-Z]+/ig, '');
+						return name.toLowerCase();						
+					},
+					type:  'string',
+					label: 'guests'
+				}
+			]);
+
 			var joinedData = new google.visualization.data.join(
-				data, data2,
+				view, view2,
 				'inner',
 				[[1,0]],
 				[0],
 				[]
 			);
 			
-			var view = new google.visualization.DataView(joinedData);
-			view.setColumns([
+			var view3 = new google.visualization.DataView(joinedData);
+			view3.setColumns([
 				{
 				calc: function(dt, r) {
 					var today       = new Date().getTime();
@@ -278,10 +304,10 @@ function uniqueDemographicsTable() {
 				}
 			]);
 			
-			col1 = view.getDistinctValues(0);
-			col2 = view.getDistinctValues(1);
-			col3 = view.getDistinctValues(2);
-			col4 = view.getDistinctValues(3);
+			col1 = view3.getDistinctValues(0);
+			col2 = view3.getDistinctValues(1);
+			col3 = view3.getDistinctValues(2);
+			col4 = view3.getDistinctValues(3);
 			
 			//Remove null values from array of attendees
 			var removeNullValue = function (value) {
@@ -414,10 +440,10 @@ function drawVolunteerTable() {
   });
 }
 
-//Initiate callback for table that'll contain info for total volunteer attendance
+//Initiate callback for table that'll contain info for unique volunteer attendance
 google.charts.setOnLoadCallback(drawUniqueVolunteerTable);
 
-//Function that builds table under the heading "Total Volunteer Attendance" on storytime.html
+//Function that builds table under the heading "Unique Volunteer Attendance" on storytime.html
 function drawUniqueVolunteerTable () {
 	var query = new google.visualization.Query('https://docs.google.com/spreadsheets/d/1lmmpJs2Bz3EfQWExB4KXq_uJWoLlq1PMCahy6w4ipcE/gviz/tq?gid=41319289');
 	query.setQuery('select A, B WHERE C = "Storytime" AND D = "Volunteer"');
@@ -431,8 +457,9 @@ function drawUniqueVolunteerTable () {
 				var days        = 86400000; //# of milliseconds in a day
 				var oneMonthAgo = today - (30*days);
 				var cellValue   = dt.getValue(r, 0).getTime();
+				var name        = dt.getValue(r, 1).replace(/[^a-zA-Z]+/ig, '');
 				if ((cellValue <= today) && (cellValue >= oneMonthAgo)) {
-					return dt.getValue(r, 1);
+					return name.toLowerCase();
 				}
 				return null;
 			},
@@ -446,8 +473,9 @@ function drawUniqueVolunteerTable () {
 				var oneMonthAgo  = today - (30*days);
 				var twoMonthsAgo = oneMonthAgo - (60*days);
 				var cellValue    = dt.getValue(r, 0).getTime();
+				var name         = dt.getValue(r, 1).replace(/[^a-zA-Z]+/ig, '');
 				if ((cellValue < oneMonthAgo) && (cellValue >= twoMonthsAgo)) {
-					return dt.getValue(r, 1);
+					return name.toLowerCase();
 				}
 				return null;
 			},
@@ -458,8 +486,9 @@ function drawUniqueVolunteerTable () {
 			calc: function(dt, r) {
 				var thisYear = new Date().getYear();
 				var cellYear = dt.getValue(r, 0).getYear();
+				var name     = dt.getValue(r, 1).replace(/[^a-zA-Z]+/ig, '');
 				if (cellYear === thisYear) {
-					return dt.getValue(r, 1);
+					return name.toLowerCase();
 				}
 				return null;
 			},
@@ -468,7 +497,8 @@ function drawUniqueVolunteerTable () {
 		},
 		{
 			calc: function(dt, r) {
-				return dt.getValue(r, 1);
+				var name = dt.getValue(r, 1).replace(/[^a-zA-Z]+/ig, '');
+				return name.toLowerCase();
 			},
 			type:  'string',
 			label: 'All Time'
@@ -516,22 +546,44 @@ function uniqueVolunteerDemographicsTable() {
 	query.setQuery('select A, B WHERE C = "Storytime" AND D = "Volunteer"');
 	query.send(function(response) {
 		var data = response.getDataTable();
+		var view = new google.visualization.DataView(data);
+		view.setColumns([0,
+			{
+				calc: function(dt, r) {
+					var name = dt.getValue(r, 1).replace(/[^a-zA-Z]+/ig, '');
+					return name.toLowerCase();
+				},
+				type:  'string',
+				label: 'guests'
+			}
+		]);
 		
-		var query2 = new google.visualization.Query('https://docs.google.com/spreadsheets/d/1lmmpJs2Bz3EfQWExB4KXq_uJWoLlq1PMCahy6w4ipcE/gviz/tq?gid=1852373469');
+		var query2 = new google.visualization.Query('https://docs.google.com/spreadsheets/d/1lmmpJs2Bz3EfQWExB4KXq_uJWoLlq1PMCahy6w4ipcE/gviz/tq?gid=1905959038');
 		query2.setQuery('SELECT B WHERE G = "Corona" OR G = "Elmhurst"');
 		query2.send(function(response2) {
 			var data2 = response2.getDataTable();
+			var view2 = new google.visualization.DataView(data2);
+			view2.setColumns([
+				{
+					calc: function(dt, r){
+						var name = dt.getValue(r, 0).replace(/[^a-zA-Z]+/ig, '');
+						return name.toLowerCase();
+					},
+					type: 'string',
+					label: 'guests'
+				}
+			]);
 			
 			var joinedData = new google.visualization.data.join(
-				data, data2,
+				view, view2,
 				'inner',
 				[[1,0]],
 				[0],
 				[]
 			);
 			
-			var view = new google.visualization.DataView(joinedData);
-			view.setColumns([
+			var view3 = new google.visualization.DataView(joinedData);
+			view3.setColumns([
 				{
 				calc: function(dt, r) {
 					var today       = new Date().getTime();
@@ -582,11 +634,11 @@ function uniqueVolunteerDemographicsTable() {
 				}
 			]);
 			
-			col1 = view.getDistinctValues(0);
-			col2 = view.getDistinctValues(1);
-			col3 = view.getDistinctValues(2);
-			col4 = view.getDistinctValues(3);
-			
+			col1 = view3.getDistinctValues(0);
+			col2 = view3.getDistinctValues(1);
+			col3 = view3.getDistinctValues(2);
+			col4 = view3.getDistinctValues(3);
+
 			//Remove null values from array of attendees
 			var removeNullValue = function (value) {
 				return value != null;

@@ -1,5 +1,5 @@
 /*
-This script is used to generate the tables and graphs on the page storytime_who_we_serve.html
+This script is used to generate the tables and graphs on the page storytime_demographics.html
 */
 
 google.charts.setOnLoadCallback(drawDashboard);
@@ -8,6 +8,7 @@ function drawDashboard() {
 	var query = new google.visualization.Query('https://docs.google.com/spreadsheets/d/1lmmpJs2Bz3EfQWExB4KXq_uJWoLlq1PMCahy6w4ipcE/gviz/tq?gid=1852373469');
 	query.setQuery('SELECT * WHERE J !="Never"')
 	query.send(function(response) {
+		//creates table with filter for table with customer info
 		var data = response.getDataTable();
 		
 		var searchFilter = new google.visualization.ControlWrapper({
@@ -15,6 +16,10 @@ function drawDashboard() {
 			containerId  : 'user_search_filter_div',
 			options      : {
 				filterColumnIndex : 1,
+				matchType         : 'any',
+				ui                : {
+					label         : 'Name'
+				}
 			}
 		});
 		
@@ -25,6 +30,11 @@ function drawDashboard() {
 				columns  : [1,29,30,31,2,3,4,5,27,28]
 			}
 		});	
+		
+		var dashboard = new google.visualization.Dashboard(document.getElementById('dashboard_div'));
+		dashboard.bind(searchFilter, userTable);
+		dashboard.draw(data);
+	});
 		
 		//Create pie chart for heading 'How Do They Get Here?'
 		var query2 = new google.visualization.Query('https://docs.google.com/spreadsheets/d/1lmmpJs2Bz3EfQWExB4KXq_uJWoLlq1PMCahy6w4ipcE/gviz/tq?gid=1852373469');
@@ -251,7 +261,7 @@ function drawDashboard() {
 			incomeChart.draw();
 		});			
 		
-		//Create bar chart for heading 'What's Their Income?'
+		//Create bar chart for heading 'How Long Have They Been With Us?'
 		var query7 = new google.visualization.Query('https://docs.google.com/spreadsheets/d/1lmmpJs2Bz3EfQWExB4KXq_uJWoLlq1PMCahy6w4ipcE/gviz/tq?gid=1852373469');
 		query7.setQuery('SELECT V WHERE J !="Never"');
 		query7.send(function(response7) {
@@ -276,13 +286,9 @@ function drawDashboard() {
 				}
 			});
 			durationChart.draw();
-		});			
-		
-		var dashboard = new google.visualization.Dashboard(document.getElementById('dashboard_div'));
-		dashboard.bind(searchFilter, userTable);
-		dashboard.draw(data);
-	});
+		});
 	
+	//For making the volunteer table with the search filter
 	var vQuery = new google.visualization.Query('https://docs.google.com/spreadsheets/d/1lmmpJs2Bz3EfQWExB4KXq_uJWoLlq1PMCahy6w4ipcE/gviz/tq?gid=1905959038');
 	vQuery.setQuery('SELECT * WHERE H CONTAINS "Storytime"');
 	vQuery.send(function(vResponse) {
@@ -291,9 +297,12 @@ function drawDashboard() {
 		var searchFilter = new google.visualization.ControlWrapper({
 			controlType  : 'StringFilter',
 			containerId  : 'volunteer_search_filter_div',
-			label        : 'Name',
 			options      : {
 				filterColumnIndex : 1,
+				matchType         : 'any',
+				ui                : {
+					label         : 'Name'
+				}
 			}
 		});
 		
@@ -306,8 +315,81 @@ function drawDashboard() {
 			options      : {
 				width    : 1000
 			}
-		});		
+		});	
 		
+		var view = new google.visualization.DataView(data);
+		view.setColumns([
+		{
+			calc: function(dt, r) {
+				var cellValue = dt.getValue(r, 6);
+				if ((cellValue.includes("Elmhurst")) || (cellValue.includes("Corona"))) {
+					return "From Elmhurst/Corona"
+				}
+				else {
+					return "Not from Elmhurst/Corona"
+				}
+			},
+				type: 'string',
+				label: 'Neighborhood'
+		}
+		]);
+		var aggData7 = new google.visualization.data.group(
+			view,
+			[0],
+			[{
+				column: 0,
+				aggregation: google.visualization.data.count,
+				label: view.getColumnLabel(0),
+				type: 'number'
+			}]
+		);
+			
+		var volunteerPieChart = new google.visualization.ChartWrapper({
+			chartType    :  'PieChart',
+			containerId  :  'volunteer_location_div',
+			dataTable    :  aggData7,
+			options      : {
+				height   :  350
+			}
+		});
+		volunteerPieChart.draw();
+		
+		var view2 = new google.visualization.DataView(data);
+		view2.setColumns([
+		{
+			calc: function(dt, r) {
+				var cellValue = dt.getValue(r, 8);
+				if ((cellValue.includes("None"))) {
+					return "Have Not Used CDC"
+				}
+				else {
+					return "Have Used CDC"
+				}
+			},
+				type: 'string',
+				label: 'Use of CDC'
+		}
+		]);
+		var aggData8 = new google.visualization.data.group(
+			view2,
+			[0],
+			[{
+				column: 0,
+				aggregation: google.visualization.data.count,
+				label: view.getColumnLabel(0),
+				type: 'number'
+			}]
+		);
+			
+		var volunteerPieChart2 = new google.visualization.ChartWrapper({
+			chartType    :  'PieChart',
+			containerId  :  'volunteer_cdc_div',
+			dataTable    :  aggData8,
+			options      : {
+				height   :  350
+			}
+		});
+		volunteerPieChart2.draw();		
 		
 		var dashboard = new google.visualization.Dashboard(document.getElementById('dashboard2_div'));
 		dashboard.bind(searchFilter, userTable);

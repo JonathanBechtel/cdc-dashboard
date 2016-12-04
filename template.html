@@ -15,7 +15,7 @@
 	<link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/bootswatch/3.3.7/flatly/bootstrap.min.css" >
 	
 	<!-- External style sheet -->
-	<link rel="stylesheet" type="text/css" href="styles.css">
+	<link rel="stylesheet" type="text/css" href="css/styles.css">
 	
 	<!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
@@ -23,11 +23,18 @@
 	<!-- Latest compiled and minified JavaScript -->
 	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
 	
+	<!--Load the AJAX API for Google Charts-->
+    <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+	
+    <script type="text/javascript">
+      // Load the Visualization API and the controls package.
+      google.charts.load('current', {'packages':['corechart', 'controls']});
+    </script>	
 </head>
 
 <body>
 	
-	<!-- Navbar to be affixed at the top -->
+<!-- Navbar to be affixed at the top -->
 	<nav class="navbar navbar-inverse">
 		<div class="container-fluid">
 			<div class="navbar-header">
@@ -40,21 +47,75 @@
 			<div>
 			  <div class="collapse navbar-collapse" id="myNavbar">
 				<ul class="nav navbar-nav">
-				  <li><a href="index.html">Home</a></li>
+				  <li class="active"><a href="index.html">Home<span class="sr-only">(current)</span></a></li>
 				  <li class="dropdown">
 					  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Storytime <span class="caret"></span></a>
 					  <ul class="dropdown-menu">
 						<li><a href="storytime.html">What Gets Done</a></li>
 						<li><a href="storytime_demographics.html">Who We Serve</a></li>
 					  </ul>
-					</li>
+				  </li>
 				  <li class="dropdown">
 					  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Booster Club <span class="caret"></span></a>
 					  <ul class="dropdown-menu">
 						<li><a href="#">What Gets Done</a></li>
 						<li><a href="booster.html">Who We Serve</a></li>
 					  </ul>
-					</li>
+				  </li>
+				  <li class="dropdown">
+					  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Food Pantry <span class="caret"></span></a>
+					  <ul class="dropdown-menu">
+						<li><a href="#">What Gets Done</a></li>
+						<li><a href="#">Who We Serve</a></li>
+					  </ul>
+				  </li>
+				  <li class="dropdown">
+					  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Health Center <span class="caret"></span></a>
+					  <ul class="dropdown-menu">
+						<li><a href="#">What Gets Done</a></li>
+						<li><a href="#">Who We Serve</a></li>
+					  </ul>
+				  </li>
+				  <li class="dropdown">
+					  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Youth Outreach <span class="caret"></span></a>
+						  <ul class="dropdown-menu">
+							<li><a href="#"><strong>Girl Scouts</strong></a></li>
+							<li role="separator" class="divider"></li>
+							<li><a href="#"> -- What Gets Done</a></li>
+							<li><a href="#"> -- Who We Serve</a></li>
+							<li role="separator" class="divider"></li>
+							
+							<li><a href="#"><strong>Boy Scouts</strong></a></li>
+							<li role="separator" class="divider"></li>
+							<li><a href="#"> -- What Gets Done</a></li>
+							<li><a href="#"> -- Who We Serve</a></li>
+							<li role="separator" class="divider"></li>
+							<li><a href="#">Mentoring</a></li>
+							<li role="separator" class="divider"></li>
+							<li><a href="#">Summer Lunch Program</a></li>
+						  </ul>
+				  </li>
+				  <li class="dropdown">
+					  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Young Governors <span class="caret"></span></a>
+					  <ul class="dropdown-menu">
+						<li><a href="#">What Gets Done</a></li>
+						<li><a href="#">Who We Serve</a></li>
+					  </ul>
+				  </li>
+				  <li class="dropdown">
+					  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">ESL <span class="caret"></span></a>
+					  <ul class="dropdown-menu">
+						<li><a href="#">What Gets Done</a></li>
+						<li><a href="#">Who We Serve</a></li>
+					  </ul>
+				  </li>
+				  <li class="dropdown">
+					  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Homeless Ministry <span class="caret"></span></a>
+					  <ul class="dropdown-menu">
+						<li><a href="#">What Gets Done</a></li>
+						<li><a href="#">Who We Serve</a></li>
+					  </ul>
+				  </li>
 				</ul>
 			  </div>
 			</div>
@@ -62,15 +123,27 @@
 	</nav>
 	
 	<div class="container-fluid">
-		<div class="col-md-10 col-md-offset-1">
-		<!-- Contents of page go here -->
-		
-		
-		<!-- End of master col-md-10 -->
+		<div class="row">
+			<div class="col-md-10 col-md-offset-1">
+			<!-- Contents of page go here -->
+			
+			
+			<!-- End of master col-md-10 -->
+			</div>
 		</div>
 	<!-- End of 'container-fluid' -->
 	</div>
 	
+	<div class="row">
+		<div class="footer">
+			<address>
+				<p class="text-center"><strong>New Life Community Development Corporation</p></strong>
+				<p class="text-center">82-10 Queens Blvd</p>
+				<p class="text-center">Elmhurst, NY 11373</p>
+			</address>
+			<p class="text-center">Designed and coded by <a href="http://stackoverflow.com/story/jonathanbechtel">Jonathan Bechtel.</a></p>	
+		</div>
+	</div>
 
 </body>
 

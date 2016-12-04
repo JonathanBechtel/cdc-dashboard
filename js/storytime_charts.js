@@ -1,16 +1,14 @@
-//create callback to initialize google charts
-google.charts.setOnLoadCallback(initialize);
+/*
+Script on this page is used to populate the charts at the top of storytime.html that use the date filters
+*/
 
-	//Pulls in spreadsheet, creates a call back to send query into drawDashboard
-	function initialize() {
+//create callback to initialize google charts
+google.charts.setOnLoadCallback(drawDashboard);
+
+function drawDashboard() {
 		var query = new google.visualization.Query('https://docs.google.com/spreadsheets/d/1lmmpJs2Bz3EfQWExB4KXq_uJWoLlq1PMCahy6w4ipcE/gviz/tq?gid=1104676809');
-		query.send(drawDashboard);
-	}
-	
-	// Callback that creates and populates a data table,
-    // instantiates a dashboard, filter controls a table chart,
-    // passes in the data and draws it.
-	function drawDashboard(response) {
+		query.setQuery('SELECT A, B, C, D, E, F, G, E*G LABEL E*G "Volunteer Hours"')
+		query.send(function(response) {
 		
 		//create datatable from query that's sent into it
 		var data  = response.getDataTable();
@@ -69,7 +67,7 @@ google.charts.setOnLoadCallback(initialize);
 			'chartType'       :  'AreaChart',
 			'containerId'     :  'chart_div3',
 			'view'            :  {
-				'columns'     : [0, 5]
+				'columns'     : [0, 5, 7]
 			},
 			
 			'options'         : {
@@ -84,4 +82,5 @@ google.charts.setOnLoadCallback(initialize);
 		dashboard.bind(storytimeDateFilter2, childrenHelpedChart);
 		dashboard.bind(storytimeDateFilter3, booksDonatedChart);
 		dashboard.draw(data);
-	}
+	});
+}
