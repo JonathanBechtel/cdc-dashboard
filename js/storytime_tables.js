@@ -237,12 +237,15 @@ function uniqueDemographicsTable() {
 			
 			//Create views to be used to create separate DataViews
 			var view2 = new google.visualization.DataView(data2);
+			var view3 = new google.visualization.DataView(data2);
+			var view4 = new google.visualization.DataView(data2);
+			var view5 = new google.visualization.DataView(data2);
 			
 			//Turn into separate columns
-			var view2 = view2.setColumns([0]);
-			var view3 = view2.setColumns([1]);
-			var view4 = view2.setColumns([2]);
-			var view5 = view2.setColumns([3]);
+			view2.setColumns([0]);
+			view3.setColumns([1]);
+			view4.setColumns([2]);
+			view5.setColumns([3]);
 
 			//Begin joining different views
 			var join1 = new google.visualization.data.join(
@@ -291,6 +294,8 @@ function uniqueDemographicsTable() {
 			var filter = joinedView.getFilteredRows([{column: 0, minValue: ""}]);
 			joinedView.setRows(filter);
 			
+			//** End of Data Munging to merge all Name columns into one **
+			
 			//Join final DataView with attendees from Storytime
 			var joinedData = new google.visualization.data.join(
 			view, joinedView,
@@ -300,6 +305,7 @@ function uniqueDemographicsTable() {
 			[]
 			);
 
+			//Create separate columns for attendees during different time spans (last month, this month, etc);
 			var masterView = new google.visualization.DataView(joinedData);
 			masterView.setColumns([
 				{
@@ -352,6 +358,7 @@ function uniqueDemographicsTable() {
 				}
 			]);
 			
+			//Get array of unique attendees for each time span
 			col1 = masterView.getDistinctValues(0);
 			col2 = masterView.getDistinctValues(1);
 			col3 = masterView.getDistinctValues(2);
