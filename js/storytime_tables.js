@@ -229,31 +229,79 @@ function uniqueDemographicsTable() {
 		]);
 
 		var query2 = new google.visualization.Query('https://docs.google.com/spreadsheets/d/1lmmpJs2Bz3EfQWExB4KXq_uJWoLlq1PMCahy6w4ipcE/gviz/tq?gid=1852373469');
-		query2.setQuery('SELECT B WHERE G = "Corona" OR G = "Elmhurst"');
+		query2.setQuery('SELECT B, AD, AE, AF WHERE G = "Corona" OR G = "Elmhurst"');
 		query2.send(function(response2) {
 			var data2 = response2.getDataTable();
+			
+			//**Begin extra Data Munging to get columns B, AD, AE, AF into 1 column **
+			
+			//Create views to be used to create separate DataViews
 			var view2 = new google.visualization.DataView(data2);
-			view2.setColumns([
+			
+			//Turn into separate columns
+			var view2 = view2.setColumns([0]);
+			var view3 = view2.setColumns([1]);
+			var view4 = view2.setColumns([2]);
+			var view5 = view2.setColumns([3]);
+
+			//Begin joining different views
+			var join1 = new google.visualization.data.join(
+				view2, view3,
+				'full',
+				[[0,0]],
+				[],
+				[]
+			);
+			
+			var join2 = new google.visualization.data.join(
+				join1, view4,
+				'full',
+				[[0,0]],
+				[],
+				[]
+			);		
+
+			var join3 = new google.visualization.data.join(
+				join2, view5,
+				'full',
+				[[0,0]],
+				[],
+				[]
+			);
+			
+			//Create new view from joined views, so it can be modified again
+			var joinedView = new google.visualization.DataView(join3);
+			
+			//Remove all special characters and convert to lowercase letters.
+			joinedView.setColumns([
 				{
 					calc: function(dt, r) {
-						var name = dt.getValue(r, 0).replace(/[^a-zA-Z]+/ig, '');
-						return name.toLowerCase();						
+						var cellValue = dt.getValue(r, 0);
+						if (cellValue !== null) {
+							var name = cellValue.replace(/[^a-zA-Z]+/ig, '');
+							return name.toLowerCase();
+						}
 					},
 					type:  'string',
 					label: 'guests'
 				}
 			]);
-
-			var joinedData = new google.visualization.data.join(
-				view, view2,
-				'inner',
-				[[1,0]],
-				[0],
-				[]
-			);
 			
-			var view3 = new google.visualization.DataView(joinedData);
-			view3.setColumns([
+			//Filter out null values, setRows to non-null values
+			var filter = joinedView.getFilteredRows([{column: 0, minValue: ""}]);
+			joinedView.setRows(filter);
+			
+			//Join final DataView with attendees from Storytime
+			var joinedData = new google.visualization.data.join(
+			view, joinedView,
+			'inner',
+			[[1,0]],
+			[0],
+			[]
+			);
+
+			var masterView = new google.visualization.DataView(joinedData);
+			masterView.setColumns([
 				{
 				calc: function(dt, r) {
 					var today       = new Date().getTime();
@@ -304,10 +352,10 @@ function uniqueDemographicsTable() {
 				}
 			]);
 			
-			col1 = view3.getDistinctValues(0);
-			col2 = view3.getDistinctValues(1);
-			col3 = view3.getDistinctValues(2);
-			col4 = view3.getDistinctValues(3);
+			col1 = masterView.getDistinctValues(0);
+			col2 = masterView.getDistinctValues(1);
+			col3 = masterView.getDistinctValues(2);
+			col4 = masterView.getDistinctValues(3);
 			
 			//Remove null values from array of attendees
 			var removeNullValue = function (value) {
