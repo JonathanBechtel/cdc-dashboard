@@ -29,7 +29,7 @@
 #unique_attendance_table_div th, #unique_demographics_table_div th, #volunteer_attendance_div th, #unique_volunteer_div th,
 #volunteer_demographics_div th, #col_chart_div1 th, #col_chart_div2 th, #col_chart_div3 th, #col_chart_div4 th, #col_chart_div5 th, 
 #col_chart_div6 th, #col_chart_div7 th, #col_chart_div8 th, #col_chart_div9 th, #col_chart_div10 th, #col_chart_div11 th, 
-#col_chart_div12 th {
+#col_chart_div12 th, #table_div1 th, #table_div2 th, #table_div3 th, #table_div4 th, #table_div5 th, #table_div6 th {
 	width: 110px;
 	padding: 8px;
 	font-weight: bold;
@@ -43,7 +43,7 @@
 #unique_attendance_table_div td, #unique_demographics_table_div td, #volunteer_attendance_div td, #unique_volunteer_div td,
 #volunteer_demographics_div td, #col_chart_div1 td, #col_chart_div2 td, #col_chart_div3 td, #col_chart_div4 td, #col_chart_div5 td, 
 #col_chart_div6 td, #col_chart_div7 td, #col_chart_div8 td, #col_chart_div9 td, #col_chart_div10 td, #col_chart_div11 td, 
-#col_chart_div12 td {
+#col_chart_div12 td, #table_div1 td, #table_div2 td, #table_div3 td, #table_div4 td, #table_div5 td, #table_div6 td {
 	width: 110px;
 	padding: 8px;
 	font-weight: bold;

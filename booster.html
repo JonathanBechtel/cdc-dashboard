@@ -2,7 +2,7 @@
 <html>
 
 <head>
-	<title>CDC Storytime - User Demographics</title>
+	<title>Booster Club - What Gets Done</title>
 	
 	<meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -26,19 +26,20 @@
 	<!--Load the AJAX API for Google Charts-->
     <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
 	
+	<!-- Load the Charts package -->
     <script type="text/javascript">
       // Load the Visualization API and the controls package.
       google.charts.load('current', {'packages':['corechart', 'controls']});
-    </script>
+    </script>	
 	
-	<!-- Javascript for charts and dashboards -->
-	<script src="js/storytime_demographics.js"></script>
-	
+	<script type="text/javascript" src="js/booster_charts.js"></script>
+	<script type="text/javascript" src="js/booster_columns.js"></script>
+	<script type="text/javascript" src="js/booster_tables.js"></script>
 </head>
 
 <body>
 	
-	<!-- Navbar to be affixed at the top -->
+<!-- Navbar to be affixed at the top -->
 	<nav class="navbar navbar-inverse">
 		<div class="container-fluid">
 			<div class="navbar-header">
@@ -51,7 +52,7 @@
 			<div>
 			  <div class="collapse navbar-collapse" id="myNavbar">
 				<ul class="nav navbar-nav">
-				  <li class="active"><a href="index.html">Home<span class="sr-only">(current)</span></a></li>
+				  <li><a href="index.html">Home<span class="sr-only">(current)</span></a></li>
 				  <li class="dropdown">
 					  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Storytime <span class="caret"></span></a>
 					  <ul class="dropdown-menu">
@@ -59,7 +60,7 @@
 						<li><a href="storytime_demographics.html">Who We Serve</a></li>
 					  </ul>
 				  </li>
-				  <li class="dropdown">
+				  <li class="dropdown active">
 					  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Booster Club <span class="caret"></span></a>
 					  <ul class="dropdown-menu">
 						<li><a href="booster.html">What Gets Done</a></li>
@@ -127,171 +128,176 @@
 	</nav>
 	
 	<div class="container-fluid">
-		<div class="col-md-10 col-md-offset-1">
+		<div class="row">
+			<div class="col-md-10 col-md-offset-1">
 			<!-- Contents of page go here -->
-			<h1 class="text-center">Storytime - Who We Serve</h1>
 			
-			<div class="row">
-				<div class="col-md-8 col-md-offset-2">
-					<hr>
-				</div>
-			</div>
-			
-			<h2 class="text-center">Customer - Quick Lookup</h2>
-			
-			<div id="dashboard_div">
-				<div class="row">
-					<div id="user_search_filter_div">
-					</div>
-				</div>
-				
-				<div class="row">
-					<div id="user_table_div">
-					</div>
-				</div>
+				<h1 class="text-center">Booster Club - What Gets Done</h1>
 				
 				<div class="row">
 					<div class="col-md-8 col-md-offset-2">
 						<hr>
 					</div>
 				</div>
-				
-				<h2 class="text-center">Our Customers - Who They Are</h2>
-				<div class="row">
-					<div class="col-md-6">
-						<h3 class="text-center">Where Do They Live?</h3>
-						<div id="neighborhood_chart_div">
-						</div>
-					</div>
-					<div class="col-md-6">
-						<h3 class="text-center">How Do They Get Here?</h3>
-						<div id="transport_chart_div">
-						</div>
-					</div>
-				</div>
-				
-				<div class="row">
-					<div class="col-md-8 col-md-offset-2">
-						<hr>
-					</div>
-				</div>
-				
-				<div class="row">
-					<div class="col-md-6">
-						<h3 class="text-center">How Long Does It Take Them?</h3>
-						<div id="length_of_time_chart_div">
-						</div>
-					</div>
 					
-					<div class="col-md-6">
-						<h3 class="text-center">How Often Do They Come?</h3>
-						<div id="visit_frequency_chart_div">
+				  <div id="dashboard_div">
+				  
+					<h3 class="text-center">How Many People Are We Serving?</h3>
+					  <div class="row">
+						<div class="col-md-4 col-md-offset-4">
+							<div id="filter_div1"></div>
 						</div>
-					</div>
-				</div>
-				
-				<div class="row">
-					<div class="col-md-8 col-md-offset-2">
-						<hr>
-					</div>
-				</div>
-
-				<div class="row">
-					<div class="col-md-6">
-						<h3 class="text-center">What's Their Gender?</h3>
-						<div id="gender_chart_div">
+					  </div>
+					  
+					  <div class="row">
+							<div class="col-md-10">
+							  <div id="chart_div1">
+							  </div>
+							</div>
+							<div class="col-md-2">
+								<div id="col_chart_div1">
+								</div>
+								<div id="col_chart_div2">
+								</div>
+								<div id="col_chart_div3">
+								</div>
+								<div id="col_chart_div4">
+								</div>
+							</div>
+					  </div>
+					  
+					  <div class="row">
+						<div class="col-md-8 col-md-offset-2">
+							<hr>
 						</div>
-					</div>
-					
-					<div class="col-md-6">
-						<h3 class="text-center">How Old Are They?</h3>
-						<div id="age_chart_div">
+					  </div>
+					  
+					  <h3 class="text-center">How Are We Helping Them?</h3>
+					  <div class="row">
+						<div class="col-md-4 col-md-offset-4">
+							<div id="filter_div2"></div>
 						</div>
-					</div>
-				</div>	
-				
-				<div class="row">
-					<div class="col-md-8 col-md-offset-2">
-						<hr>
-					</div>
-				</div>			
-
-				<div class="row">
-					<h3 class="text-center">What's Their Ethnicity?</h3>
-					<div id="ethnicity_div">
-				
-					</div>
-				</div>
-				
-				<div class="row">
-					<div class="col-md-8 col-md-offset-2">
-						<hr>
-					</div>
-				</div>
-
-				<div class="row">
-					<h3 class="text-center">What's Their Primary Language?</h3>
-					<div id="language_div">
-					</div>
-				</div>
-				
-				<div class="row">
-					<div class="col-md-8 col-md-offset-2">
-						<hr>
-					</div>
-				</div>
-				
-				<div class="row">
-					<div class="col-md-6">
-						<h3 class="text-center">What's Their Income?</h3>
-						<div id="income_div">
+					  </div>
+					  
+					  <div class="row">
+							<div class="col-md-10">
+							  <div id="chart_div2">
+							  </div>
+							</div>
+							<div class="col-md-2">
+								<div id="col_chart_div5">
+								</div>
+								<div id="col_chart_div6">
+								</div>
+								<div id="col_chart_div7">
+								</div>
+								<div id="col_chart_div8">
+								</div>
+							</div>
+					  </div>
+					  
+					  <div class="row">
+						<div class="col-md-8 col-md-offset-2">
+							<hr>
+					   </div>
+					  </div>
+					  
+					  <h3 class="text-center">How Much Time Are We Spending With Them?</h3>
+					  <div class="row">
+						<div class="col-md-4 col-md-offset-4">
+							<div id="filter_div3"></div>
 						</div>
-					</div>
-					<div class="col-md-6">
-						<h3 class="text-center">How Long Have They Been Coming?</h3>
-						<div id="length_div">
+					  </div>
+					  
+					  <div class="row">
+						<div class="col-md-10">
+						  <div id="chart_div3">
+						  </div>
 						</div>
-					</div>				
-				</div>			
-				
-				<div class="row">
-					<div class="col-md-8 col-md-offset-2">
-						<hr>
-					</div>
-				</div>			
-				
-			<!-- End dashboard_div -->	
-			</div>
+						<div class="col-md-2">
+							<div id="col_chart_div9">
+							</div>
+							<div id="col_chart_div10">
+							</div>
+							<div id="col_chart_div11">
+							</div>
+							<div id="col_chart_div12">
+							</div>
+						</div>
+					  </div>
+					<!-- End dashboard_div -->
+				  </div>  					  					  
+					  
+					  <div class="row">
+						<div class="col-md-8 col-md-offset-2">
+							<hr>
+					   </div>
+					  </div>
 			
-			<h2 class="text-center">Who Are Our Volunteers?</h2>
-				
-			<div id="dashboard2_div">
-				<div id="volunteer_search_filter_div">
-				</div>
-				<div id="volunteer_table_div">
-				</div>
-			</div>
-				
-			<div class="row">
-				<div class="col-md-8 col-md-offset-2">
-					<hr>
-				</div>
-			</div>	
+				<h3 class="text-center">Attendance, At A Glance</h3>		  
+					  
+					  <div class="row">
+						<div class="col-md-6">
+							<h3 class="text-center">Total Attendance</h3>
+							<div id="table_div1">
+							</div>
+						</div>
+						
+						<div class="col-md-6">
+							<h3 class="text-center">Unique Attendance</h3>
+							<div id="table_div2">
+							</div>
+						</div>
+					  </div>
+					  
+					  <div class="row">
+						<div class="col-md-8 col-md-offset-2">
+							<hr>
+					   </div>
+					  </div>
+					  
+					  <div class="row">
+						<div class="col-md-6">
+							<h3 class="text-center">Unique Attendance from Elmhurst/Corona</h3>
+							<div id="table_div3">
+							</div>
+						</div>
+						
+						<div class="col-md-6">
+							<h3 class="text-center">Total Volunteer Attendance</h3>
+							<div id="table_div4">
+							</div>
+						</div>
+					  </div>
+					  
+					  <div class="row">
+						<div class="col-md-8 col-md-offset-2">
+							<hr>
+					   </div>
+					  </div>
+					  
+					  <div class="row">
+						<div class="col-md-6">
+							<h3 class="text-center">Unique Volunteer Attendance</h3>
+							<div id="table_div5">
+							</div>
+						</div>
+						
+						<div class="col-md-6">
+							<h3 class="text-center">Unique Volunteers from Elmhurst/Corona</h3>
+							<div id="table_div6">
+							</div>
+						</div>
+					  </div>
+					  
+					  <div class="row">
+						<div class="col-md-8 col-md-offset-2">
+							<hr>
+					   </div>
+					  </div>			
 			
-			<div class="row">
-				<div class="col-md-6">
-					<h3 class="text-center">How Many Are From Elmhurst/Corona?</h3>
-					<div id="volunteer_location_div">
-					</div>
-				</div>
-				<div class="col-md-6">
-					<h3 class="text-center">How Many Have Used the CDC As A Service?</h3>
-					<div id="volunteer_cdc_div">
-					</div>
-				</div>				
+			<!-- End of master col-md-10 -->
 			</div>
-			
-		<!-- End of master col-md-10 -->
 		</div>
 	<!-- End of 'container-fluid' -->
 	</div>
@@ -305,7 +311,7 @@
 			</address>
 			<p class="text-center">Designed and coded by <a href="http://stackoverflow.com/story/jonathanbechtel">Jonathan Bechtel.</a></p>	
 		</div>
-	</div>	
+	</div>
 
 </body>
 
