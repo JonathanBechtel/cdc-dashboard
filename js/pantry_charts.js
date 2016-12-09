@@ -86,44 +86,57 @@ function drawDashboard() {
 		dashboard.bind(pantryDateFilter2, totalsHelpedChart);
 		dashboard.bind(pantryDateFilter3, totalsCollectedChart);
 		dashboard.draw(data);
-	});
-}
-
-//Callback for last filtered chart
-google.charts.setOnLoadCallback(drawLastChart);
-
-function drawLastChart() {
-	var query = new google.visualization.Query('https://docs.google.com/spreadsheets/d/1lmmpJs2Bz3EfQWExB4KXq_uJWoLlq1PMCahy6w4ipcE/gviz/tq?gid=206031508');
-	query.setQuery('SELECT MONTH(A), COUNT(B) Group By MONTH(A)');
-	query.send(function(response){
-		var data = response.getDataTable();
 		
-		var pantryDateFilter4 = new google.visualization.ControlWrapper({
-			'controlType':  'DateRangeFilter',
-			'containerId':  'filter_div4',
-			'options'    :  {
-				'filterColumnIndex' : 1
+		//Begin extra data munging to create total meetings chart
+		var view = new google.visualization.DataView(data);
+		view.setColumns([
+			{
+				calc: function(dt, r) {
+					var value = dt.getValue(r, 0);
+					var month = value.getMonth()+1;
+					var year  = value.getFullYear();
+					return month + "-" + year;
+				},
+				type: 'string',
+			},
+			{
+				calc: function(dt, r) {
+					value = dt.getValue(r, 6);
+					if (value !== "yes") {
+						return 1;
+					}
+					else {
+						return 0;
+					}
+				},
+				type: 'number'
 			}
+		]);
+		
+		var aggData = new google.visualization.data.group(
+			view, 
+			[0],
+			[{
+				column: 0, 
+				label: 'Number of Meetings', 
+				aggregation: google.visualization.data.count, 
+				type: 'number'
+			},
+			{
+				column: 1,
+				label: 'Small Group Meetings',
+				aggregation: google.visualization.data.sum,
+				type: 'number'
+			}]
+			);
+			
+		//**End extra data munging to aggregate data for total meetings chart
+		
+		var totalMeetingsChart = new google.visualization.ChartWrapper({
+			chartType     :'Bar',
+			containerId   :'chart_div4',
+			dataTable     :aggData
 		});
-		
-		var totalsCollectedChart = new google.visualization.ChartWrapper({
-			'chartType'       :  'Bar',
-			'containerId'     :  'chart_div4',
-			//dataTable         :  data,
-			'options'         : {
-				'height'      : 400,
-				'vAxis'       : {
-					'format'  : 'short'
-				}
-			}
-		});
-		//totalsCollectedChart.draw();
-		
-		/*var totalsChart = new google.visualization.BarChart(document.getElementById('chart_div4'));
-		totalsChart.draw(data);*/
-		
-		var dashboard = new google.visualization.Dashboard(document.getElementById('dashboard_div2'));
-		dashboard.bind(pantryDateFilter4, totalsCollectedChart);
-		dashboard.draw(data);
+		totalMeetingsChart.draw();
 	});
 }

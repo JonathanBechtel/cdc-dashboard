@@ -27,7 +27,9 @@
 #chart_div4 th, #chart_div5 th, #chart_div6 th, #chart_div7 th, #chart_div8 th, #chart_div9 th, #chart_div10 th,
 #chart_div11 th, #chart_div12 th, #chart_div13 th, #chart_div14 th, #chart_div15 th, #attendance_table_div th,
 #unique_attendance_table_div th, #unique_demographics_table_div th, #volunteer_attendance_div th, #unique_volunteer_div th,
-#volunteer_demographics_div th {
+#volunteer_demographics_div th, #col_chart_div1 th, #col_chart_div2 th, #col_chart_div3 th, #col_chart_div4 th, #col_chart_div5 th, 
+#col_chart_div6 th, #col_chart_div7 th, #col_chart_div8 th, #col_chart_div9 th, #col_chart_div10 th, #col_chart_div11 th, 
+#col_chart_div12 th {
 	width: 110px;
 	padding: 8px;
 	font-weight: bold;
@@ -39,7 +41,9 @@
 #chart_div4 td, #chart_div5 td, #chart_div6 td, #chart_div7 td, #chart_div8 td, #chart_div9 td, #chart_div10 td,
 #chart_div11 td, #chart_div12 td, #chart_div13 td, #chart_div14 td, #chart_div15 td, #attendance_table_div td, 
 #unique_attendance_table_div td, #unique_demographics_table_div td, #volunteer_attendance_div td, #unique_volunteer_div td,
-#volunteer_demographics_div td {
+#volunteer_demographics_div td, #col_chart_div1 td, #col_chart_div2 td, #col_chart_div3 td, #col_chart_div4 td, #col_chart_div5 td, 
+#col_chart_div6 td, #col_chart_div7 td, #col_chart_div8 td, #col_chart_div9 td, #col_chart_div10 td, #col_chart_div11 td, 
+#col_chart_div12 td {
 	width: 110px;
 	padding: 8px;
 	font-weight: bold;

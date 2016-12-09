@@ -1,5 +1,5 @@
 /*This file creates the javascript to create the tables with the summed values
-underneath each of the charts in storytime.html*/
+to the right of the filtered charts charts in storytime.html*/
 
 //initialize the callback to send the initial query to populate the tables
 google.charts.setOnLoadCallback(drawTables);
