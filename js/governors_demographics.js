@@ -1,12 +1,12 @@
 /*
-This script is used to generate the tables and graphs on the page center_demographics.html
+This script is used to generate the tables and graphs on the page governors_demographics.html
 */
 
 google.charts.setOnLoadCallback(drawDashboard);
 
 function drawDashboard() {
 	var query = new google.visualization.Query('https://docs.google.com/spreadsheets/d/1lmmpJs2Bz3EfQWExB4KXq_uJWoLlq1PMCahy6w4ipcE/gviz/tq?gid=1852373469');
-	query.setQuery('SELECT * WHERE L !="Never"')
+	query.setQuery('SELECT * WHERE O !="Never"')
 	query.send(function(response) {
 		//creates table with filter for table with customer info
 		var data = response.getDataTable();
@@ -42,7 +42,7 @@ function drawDashboard() {
 		
 		//Create pie chart for heading 'How Do They Get Here?'
 		var query2 = new google.visualization.Query('https://docs.google.com/spreadsheets/d/1lmmpJs2Bz3EfQWExB4KXq_uJWoLlq1PMCahy6w4ipcE/gviz/tq?gid=1852373469');
-		query2.setQuery('SELECT X WHERE L !="Never"');
+		query2.setQuery('SELECT X WHERE O !="Never"');
 		query2.send(function(response2) {
 			var data2 = response2.getDataTable();
 			var aggData = new google.visualization.data.group(
@@ -66,7 +66,7 @@ function drawDashboard() {
 		
 		//Create pie chart for heading 'Where do they live?'
 		var query3 = new google.visualization.Query('https://docs.google.com/spreadsheets/d/1lmmpJs2Bz3EfQWExB4KXq_uJWoLlq1PMCahy6w4ipcE/gviz/tq?gid=1852373469');
-		query3.setQuery('SELECT G WHERE L !="Never"');
+		query3.setQuery('SELECT G WHERE O !="Never"');
 		query3.send(function(response3) {
 			var data3 = response3.getDataTable();
 			var aggData2 = new google.visualization.data.group(
@@ -90,7 +90,7 @@ function drawDashboard() {
 		
 		//Create pie chart for heading 'How Long Does It Take Them?'
 		var query4 = new google.visualization.Query('https://docs.google.com/spreadsheets/d/1lmmpJs2Bz3EfQWExB4KXq_uJWoLlq1PMCahy6w4ipcE/gviz/tq?gid=1852373469');
-		query4.setQuery('SELECT W WHERE L !="Never"');
+		query4.setQuery('SELECT W WHERE O !="Never"');
 		query4.send(function(response4) {
 			var data4 = response4.getDataTable();
 			var aggData3 = new google.visualization.data.group(
@@ -114,7 +114,7 @@ function drawDashboard() {
 		
 		//Create pie chart for heading 'How Often Do They Come?'
 		var query5 = new google.visualization.Query('https://docs.google.com/spreadsheets/d/1lmmpJs2Bz3EfQWExB4KXq_uJWoLlq1PMCahy6w4ipcE/gviz/tq?gid=1852373469');
-		query5.setQuery('SELECT J WHERE L !="Never"');
+		query5.setQuery('SELECT J WHERE O !="Never"');
 		query5.send(function(response5) {
 			var data5 = response5.getDataTable();
 			var aggData4 = new google.visualization.data.group(
@@ -138,7 +138,7 @@ function drawDashboard() {
 
 		//Create pie chart for heading 'What's Their Gender?'
 		var query6 = new google.visualization.Query('https://docs.google.com/spreadsheets/d/1lmmpJs2Bz3EfQWExB4KXq_uJWoLlq1PMCahy6w4ipcE/gviz/tq?gid=1852373469');
-		query6.setQuery('SELECT T WHERE L !="Never"');
+		query6.setQuery('SELECT T WHERE O !="Never"');
 		query6.send(function(response6) {
 			var data6 = response6.getDataTable();
 			var aggData5 = new google.visualization.data.group(
@@ -162,7 +162,7 @@ function drawDashboard() {
 
 		//Create pie chart for heading 'What's Their Age?'
 		var query7 = new google.visualization.Query('https://docs.google.com/spreadsheets/d/1lmmpJs2Bz3EfQWExB4KXq_uJWoLlq1PMCahy6w4ipcE/gviz/tq?gid=1852373469');
-		query7.setQuery('SELECT U WHERE L !="Never"');
+		query7.setQuery('SELECT U WHERE O !="Never"');
 		query7.send(function(response7) {
 			var data7 = response7.getDataTable();
 			var aggData6 = new google.visualization.data.group(
@@ -186,7 +186,7 @@ function drawDashboard() {
 
 		//Create bar chart for heading 'What's Their Ethnicity?'
 		var query7 = new google.visualization.Query('https://docs.google.com/spreadsheets/d/1lmmpJs2Bz3EfQWExB4KXq_uJWoLlq1PMCahy6w4ipcE/gviz/tq?gid=1852373469');
-		query7.setQuery('SELECT Z WHERE L !="Never"');
+		query7.setQuery('SELECT Z WHERE O !="Never"');
 		query7.send(function(response7) {
 			var data7 = response7.getDataTable();
 			var aggData6 = new google.visualization.data.group(
@@ -213,7 +213,7 @@ function drawDashboard() {
 		
 		//Create bar chart for heading 'What's Their Language?'
 		var query7 = new google.visualization.Query('https://docs.google.com/spreadsheets/d/1lmmpJs2Bz3EfQWExB4KXq_uJWoLlq1PMCahy6w4ipcE/gviz/tq?gid=1852373469');
-		query7.setQuery('SELECT AG WHERE L !="Never"');
+		query7.setQuery('SELECT AG WHERE O !="Never"');
 		query7.send(function(response7) {
 			var data7 = response7.getDataTable();
 			var aggData6 = new google.visualization.data.group(
@@ -240,7 +240,7 @@ function drawDashboard() {
 		
 		//Create bar chart for heading 'What's Their Income?'
 		var query7 = new google.visualization.Query('https://docs.google.com/spreadsheets/d/1lmmpJs2Bz3EfQWExB4KXq_uJWoLlq1PMCahy6w4ipcE/gviz/tq?gid=1852373469');
-		query7.setQuery('SELECT AA WHERE L !="Never"');
+		query7.setQuery('SELECT AA WHERE O !="Never"');
 		query7.send(function(response7) {
 			var data7 = response7.getDataTable();
 			var aggData6 = new google.visualization.data.group(
@@ -267,7 +267,7 @@ function drawDashboard() {
 		
 		//Create bar chart for heading 'How Long Have They Been With Us?'
 		var query7 = new google.visualization.Query('https://docs.google.com/spreadsheets/d/1lmmpJs2Bz3EfQWExB4KXq_uJWoLlq1PMCahy6w4ipcE/gviz/tq?gid=1852373469');
-		query7.setQuery('SELECT V WHERE L !="Never"');
+		query7.setQuery('SELECT V WHERE O !="Never"');
 		query7.send(function(response7) {
 			var data7 = response7.getDataTable();
 			var aggData6 = new google.visualization.data.group(
@@ -294,7 +294,7 @@ function drawDashboard() {
 	
 	//For making the volunteer table with the search filter
 	var vQuery = new google.visualization.Query('https://docs.google.com/spreadsheets/d/1lmmpJs2Bz3EfQWExB4KXq_uJWoLlq1PMCahy6w4ipcE/gviz/tq?gid=1905959038');
-	vQuery.setQuery('SELECT * WHERE H CONTAINS "Health Clinic"');
+	vQuery.setQuery('SELECT * WHERE H CONTAINS "Young Governors"');
 	vQuery.send(function(vResponse) {
 		var data = vResponse.getDataTable();
 		
