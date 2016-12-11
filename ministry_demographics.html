@@ -1,0 +1,312 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<title>Homeless Ministry - User Demographics</title>
+	
+	<meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+	
+	<!-- Latest compiled and minified CSS -->
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+	
+	<!-- Bootswatch Theme -->
+	<link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/bootswatch/3.3.7/flatly/bootstrap.min.css" >
+	
+	<!-- External style sheet -->
+	<link rel="stylesheet" type="text/css" href="css/styles.css">
+	
+	<!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+	
+	<!-- Latest compiled and minified JavaScript -->
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+	
+	<!--Load the AJAX API for Google Charts-->
+    <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+	
+    <script type="text/javascript">
+      // Load the Visualization API and the controls package.
+      google.charts.load('current', {'packages':['corechart', 'controls']});
+    </script>
+	
+	<!-- Javascript for charts and dashboards -->
+	<script src="js/ministry_demographics.js"></script>
+	
+</head>
+
+<body>
+	
+	<!-- Navbar to be affixed at the top -->
+	<nav class="navbar navbar-inverse">
+		<div class="container-fluid">
+			<div class="navbar-header">
+				<button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+				  <span class="icon-bar"></span>
+				  <span class="icon-bar"></span>
+				  <span class="icon-bar"></span>
+				</button>
+			</div>
+			<div>
+			  <div class="collapse navbar-collapse" id="myNavbar">
+				<ul class="nav navbar-nav">
+				  <li><a href="index.html">Home<span class="sr-only">(current)</span></a></li>
+				  <li class="dropdown">
+					  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Storytime <span class="caret"></span></a>
+					  <ul class="dropdown-menu">
+						<li><a href="storytime.html">What Gets Done</a></li>
+						<li><a href="storytime_demographics.html">Who We Serve</a></li>
+					  </ul>
+				  </li>
+				  <li class="dropdown">
+					  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Booster Club <span class="caret"></span></a>
+					  <ul class="dropdown-menu">
+						<li><a href="booster.html">What Gets Done</a></li>
+						<li><a href="booster_demographics.html">Who We Serve</a></li>
+					  </ul>
+				  </li>
+				  <li class="dropdown">
+					  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Food Pantry <span class="caret"></span></a>
+					  <ul class="dropdown-menu">
+						<li><a href="pantry.html">What Gets Done</a></li>
+						<li><a href="pantry_demographics.html">Who We Serve</a></li>
+					  </ul>
+				  </li>
+				  <li class="dropdown">
+					  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Health Center <span class="caret"></span></a>
+					  <ul class="dropdown-menu">
+						<li><a href="center.html">What Gets Done</a></li>
+						<li><a href="center_demographics.html">Who We Serve</a></li>
+					  </ul>
+				  </li>
+				  <li class="dropdown">
+					  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Youth Outreach <span class="caret"></span></a>
+						  <ul class="dropdown-menu">
+							<li><a href="#"><strong>Girl Scouts</strong></a></li>
+							<li role="separator" class="divider"></li>
+							<li><a href="#"> -- What Gets Done</a></li>
+							<li><a href="#"> -- Who We Serve</a></li>
+							<li role="separator" class="divider"></li>
+							
+							<li><a href="#"><strong>Boy Scouts</strong></a></li>
+							<li role="separator" class="divider"></li>
+							<li><a href="#"> -- What Gets Done</a></li>
+							<li><a href="#"> -- Who We Serve</a></li>
+							<li role="separator" class="divider"></li>
+							<li><a href="#">Mentoring</a></li>
+							<li role="separator" class="divider"></li>
+							<li><a href="#">Summer Lunch Program</a></li>
+						  </ul>
+				  </li>
+				  <li class="dropdown">
+					  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Young Governors <span class="caret"></span></a>
+					  <ul class="dropdown-menu">
+						<li><a href="governors.html">What Gets Done</a></li>
+						<li><a href="governors_demographics.html">Who We Serve</a></li>
+					  </ul>
+				  </li>
+				  <li class="dropdown">
+					  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">ESL <span class="caret"></span></a>
+					  <ul class="dropdown-menu">
+						<li><a href="esl.html">What Gets Done</a></li>
+						<li><a href="esl_demographics.html">Who We Serve</a></li>
+					  </ul>
+				  </li>
+				  <li class="dropdown active">
+					  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Homeless Ministry <span class="caret"></span></a>
+					  <ul class="dropdown-menu">
+						<li><a href="ministry.html">What Gets Done</a></li>
+						<li><a href="ministry_demographics.html">Who We Serve</a></li>
+					  </ul>
+				  </li>
+				</ul>
+			  </div>
+			</div>
+		</div>
+	</nav>
+	
+	<div class="container-fluid">
+		<div class="col-md-10 col-md-offset-1">
+			<!-- Contents of page go here -->
+			<h1 class="text-center">Homeless Ministry - Who We Serve</h1>
+			
+			<div class="row">
+				<div class="col-md-8 col-md-offset-2">
+					<hr>
+				</div>
+			</div>
+			
+			<h2 class="text-center">Customer - Quick Lookup</h2>
+			
+			<div id="dashboard_div">
+				<div class="row">
+					<div id="user_search_filter_div">
+					</div>
+				</div>
+				
+				<div class="row">
+					<div id="user_table_div">
+					</div>
+				</div>
+				
+				<div class="row">
+					<div class="col-md-8 col-md-offset-2">
+						<hr>
+					</div>
+				</div>
+				
+				<h2 class="text-center">Our Customers - Who They Are</h2>
+				<div class="row">
+					<div class="col-md-6">
+						<h3 class="text-center">Where Do They Live?</h3>
+						<div id="neighborhood_chart_div">
+						</div>
+					</div>
+					<div class="col-md-6">
+						<h3 class="text-center">How Do They Get Here?</h3>
+						<div id="transport_chart_div">
+						</div>
+					</div>
+				</div>
+				
+				<div class="row">
+					<div class="col-md-8 col-md-offset-2">
+						<hr>
+					</div>
+				</div>
+				
+				<div class="row">
+					<div class="col-md-6">
+						<h3 class="text-center">How Long Does It Take Them?</h3>
+						<div id="length_of_time_chart_div">
+						</div>
+					</div>
+					
+					<div class="col-md-6">
+						<h3 class="text-center">How Often Do They Come?</h3>
+						<div id="visit_frequency_chart_div">
+						</div>
+					</div>
+				</div>
+				
+				<div class="row">
+					<div class="col-md-8 col-md-offset-2">
+						<hr>
+					</div>
+				</div>
+
+				<div class="row">
+					<div class="col-md-6">
+						<h3 class="text-center">What's Their Gender?</h3>
+						<div id="gender_chart_div">
+						</div>
+					</div>
+					
+					<div class="col-md-6">
+						<h3 class="text-center">How Old Are They?</h3>
+						<div id="age_chart_div">
+						</div>
+					</div>
+				</div>	
+				
+				<div class="row">
+					<div class="col-md-8 col-md-offset-2">
+						<hr>
+					</div>
+				</div>			
+
+				<div class="row">
+					<h3 class="text-center">What's Their Ethnicity?</h3>
+					<div id="ethnicity_div">
+				
+					</div>
+				</div>
+				
+				<div class="row">
+					<div class="col-md-8 col-md-offset-2">
+						<hr>
+					</div>
+				</div>
+
+				<div class="row">
+					<h3 class="text-center">What's Their Primary Language?</h3>
+					<div id="language_div">
+					</div>
+				</div>
+				
+				<div class="row">
+					<div class="col-md-8 col-md-offset-2">
+						<hr>
+					</div>
+				</div>
+				
+				<div class="row">
+					<div class="col-md-6">
+						<h3 class="text-center">What's Their Income?</h3>
+						<div id="income_div">
+						</div>
+					</div>
+					<div class="col-md-6">
+						<h3 class="text-center">How Long Have They Been Coming?</h3>
+						<div id="length_div">
+						</div>
+					</div>				
+				</div>			
+				
+				<div class="row">
+					<div class="col-md-8 col-md-offset-2">
+						<hr>
+					</div>
+				</div>			
+				
+			<!-- End dashboard_div -->	
+			</div>
+			
+			<h2 class="text-center">Who Are Our Volunteers?</h2>
+				
+			<div id="dashboard2_div">
+				<div id="volunteer_search_filter_div">
+				</div>
+				<div id="volunteer_table_div">
+				</div>
+			</div>
+				
+			<div class="row">
+				<div class="col-md-8 col-md-offset-2">
+					<hr>
+				</div>
+			</div>	
+			
+			<div class="row">
+				<div class="col-md-6">
+					<h3 class="text-center">How Many Are From Elmhurst/Corona?</h3>
+					<div id="volunteer_location_div">
+					</div>
+				</div>
+				<div class="col-md-6">
+					<h3 class="text-center">How Many Have Used the CDC As A Service?</h3>
+					<div id="volunteer_cdc_div">
+					</div>
+				</div>				
+			</div>
+			
+		<!-- End of master col-md-10 -->
+		</div>
+	<!-- End of 'container-fluid' -->
+	</div>
+	
+	<div class="row">
+		<div class="footer">
+			<address>
+				<p class="text-center"><strong>New Life Community Development Corporation</p></strong>
+				<p class="text-center">82-10 Queens Blvd</p>
+				<p class="text-center">Elmhurst, NY 11373</p>
+			</address>
+			<p class="text-center">Designed and coded by <a href="http://stackoverflow.com/story/jonathanbechtel">Jonathan Bechtel.</a></p>	
+		</div>
+	</div>	
+
+</body>
+
+</html>
