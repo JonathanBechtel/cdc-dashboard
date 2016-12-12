@@ -39,7 +39,7 @@ function drawTables() {
 		});
 		colTable4.draw();		
 		
-		//colTable 9-12 are located next to the 3rd chart at top of page
+		//colTable 5-8 located next to the 3rd chart at top of page
 		var colTable5 = new google.visualization.ChartWrapper({
 			'chartType'    :   'Table',
 			'containerId'  :   'col_chart_div5',
