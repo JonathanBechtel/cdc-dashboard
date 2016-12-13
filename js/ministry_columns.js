@@ -1,5 +1,7 @@
-/*This file creates the javascript to create the tables with the summed values
-to the right of the charts w/ filters at the top of the page on ministry.html*/
+/*
+This file creates the javascript to create the tables with the summed values
+to the right of the charts w/ filters at the top of the page on ministry.html
+*/
 
 //initialize the callback to send the initial query to populate the tables
 google.charts.setOnLoadCallback(drawTables);

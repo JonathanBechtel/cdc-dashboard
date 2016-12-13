@@ -1,5 +1,5 @@
 /*
-This script is used to generate the tables and graphs on the page cub_scouts_demographics.html
+  This script is used to generate the tables and graphs on the page cub_scouts_demographics.html
 */
 
 google.charts.setOnLoadCallback(drawDashboard);

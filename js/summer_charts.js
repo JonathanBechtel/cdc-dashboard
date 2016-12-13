@@ -1,5 +1,5 @@
 /*
-Script on this page is used to populate the charts at the top of summer.html that use the date filters
+  Script on this page is used to populate the charts at the top of summer.html that use the date filters
 */
 
 //create callback to initialize google charts

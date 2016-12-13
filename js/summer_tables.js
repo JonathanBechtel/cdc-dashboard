@@ -1,7 +1,7 @@
 /*
-This script is made to populate the tables at the bottom of the page on summer.html.  The tables that measure
-unique and total attendance along with demographic information for guests and volunteers is what's created on 
-this page.
+ This script is made to populate the tables at the bottom of the page on summer.html.  The tables that measure
+ unique and total attendance along with demographic information for guests and volunteers is what's created on 
+ this page.
 */
 
 google.charts.setOnLoadCallback(drawAttendanceTable);
